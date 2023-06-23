@@ -4,7 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { WeatherComponent } from './components/weather/weather.component';
 import { WeatherService } from './services/weather.service';
 
-@NgModule({
+@Module({
   declarations: [AppComponent, WeatherComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), HttpClientModule],
