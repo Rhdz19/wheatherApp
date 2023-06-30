@@ -3,7 +3,7 @@ import { WeatherService } from 'src/app/services/weather.service';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrls: ['./home.page.scss'],
   standalone: true,
   imports:[IonicModule, CommonModule, FormsModule, HttpClientModule],
-  providers: []
+  providers: [HttpClient]
 })
 export class HomePage implements OnInit {
   public weather_data: any;
@@ -19,7 +19,7 @@ export class HomePage implements OnInit {
 
   constructor(private weather_service: WeatherService) {}
 
-  ngOnInit() {}
+  ngOnInit() {this.getWeather}
 
   getWeather() {
     this.weather_service.getWeatherFromApi(this.city).subscribe((data) => {

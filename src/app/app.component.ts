@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 
 import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app.routes';
+import { WeatherService } from './services/weather.service';
+
 
 
 
@@ -19,8 +20,8 @@ import { AppRoutingModule } from './app.routes';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [IonicModule,HttpClientModule, AppRoutingModule], 
-  providers: [],
+  imports: [IonicModule,HttpClientModule], 
+  providers: [WeatherService],
 
 })
 export class AppComponent {

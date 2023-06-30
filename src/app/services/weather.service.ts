@@ -10,7 +10,7 @@ const apiKey = "1fd2cb8c6867c77aab1a440e4e6bce4f";
 export class WeatherService {
   constructor(
     private http: HttpClient,
-    private storage: Storage
+
     ) {}
 
   getWeatherFromApi(city: string) {

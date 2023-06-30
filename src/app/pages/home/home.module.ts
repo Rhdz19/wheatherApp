@@ -7,11 +7,11 @@ import { RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from 'src/app/app.routes';
-import { HttpClientModule,HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { WeatherService } from 'src/app/services/weather.service';
 @NgModule({
   imports: [
     AppRoutingModule,
-    
     CommonModule,
     FormsModule,
     IonicModule,
@@ -25,6 +25,6 @@ import { HttpClientModule,HttpClient } from '@angular/common/http';
     ])
   ],
   declarations: [],
-  providers: []
+  providers: [WeatherService]
 })
 export class HomePageModule {}
