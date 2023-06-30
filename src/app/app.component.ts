@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-
+import { HomePage } from './pages/home/home.page';
+import { WeatherService } from './services/weather.service';
 // import { WeatherComponent } from './components/weather/weather.component';
 // import { WeatherService } from './services/weather.service';
 
@@ -18,6 +19,8 @@ import { IonicModule } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
   standalone: true,
   imports: [IonicModule],
+  providers: [],
+
 })
 export class AppComponent {
   constructor() {}
