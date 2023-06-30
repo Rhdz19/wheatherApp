@@ -1,12 +1,25 @@
 <ion-header>
-	<ion-title>Weather App</ion-title>
+	<ion-toolbar>
+	  <ion-title>
+		App del clima
+	  </ion-title>
+	</ion-toolbar>
   </ion-header>
   
   <ion-content>
-	<form (submit)="getWeather()">
-	  <ion-input type="text" placeholder="Ingresa una ciudad" [(ngModel)]="city" name="city"></ion-input>
-	  <ion-label>{{ weather }}</ion-label>
-	  <ion-button type="submit">Buscar</ion-button>
-	</form>
+	<ion-item>
+	  <ion-label position="floating">Ciudad</ion-label>
+	  <ion-input [(ngModel)]="city"></ion-input>
+	</ion-item>
+  
+	<ion-button expand="full" (click)="getWeather()">Saber el clima</ion-button>
+  
+	<ion-card *ngIf="weather_data">
+	  <ion-card-content>
+		<h2>Weather in {{ weather_data.location.name }}</h2>
+		<p>Temperature: {{ weather_data.current.temperature }}°C</p>
+		<p>Weather Description: {{ weather_data.current.weather_descriptions[0] }}</p>
+	  </ion-card-content>
+	</ion-card>
   </ion-content>
   

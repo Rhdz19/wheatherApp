@@ -6,13 +6,17 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { AppRoutingModule } from 'src/app/app.routes';
+import { HttpClientModule,HttpClient } from '@angular/common/http';
 @NgModule({
   imports: [
+    AppRoutingModule,
+    
     CommonModule,
     FormsModule,
     IonicModule,
     BrowserModule,
+    HttpClientModule,
     RouterModule.forChild([
       {
         path: '',
@@ -20,6 +24,7 @@ import { BrowserModule } from '@angular/platform-browser';
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [],
+  providers: []
 })
 export class HomePageModule {}

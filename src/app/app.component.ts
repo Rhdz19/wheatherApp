@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { HomePage } from './pages/home/home.page';
-import { WeatherService } from './services/weather.service';
-// import { WeatherComponent } from './components/weather/weather.component';
-// import { WeatherService } from './services/weather.service';
+
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app.routes';
+
+
 
 // @Module({
 //   declarations: [AppComponent, WeatherComponent],
@@ -18,7 +19,7 @@ import { WeatherService } from './services/weather.service';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [IonicModule],
+  imports: [IonicModule,HttpClientModule, AppRoutingModule], 
   providers: [],
 
 })
