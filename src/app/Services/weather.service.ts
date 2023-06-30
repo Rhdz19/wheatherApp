@@ -1,25 +1,64 @@
-// src/app/services/weather.service.ts
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+const apiKey = "1fd2cb8c6867c77aab1a440e4e6bce4f";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class WeatherService {
-  private apiKey = 'TU_API_KEY';
-  private apiUrl = 'https://api.openweathermap.org/data/2.5';
+  constructor(
+    private http: HttpClient,
+    private storage: Storage
+    ) {}
 
-  constructor(private http: HttpClient) { }
-
-  getWeatherByCity(city: string): Observable<any> {
-    const url = `${this.apiUrl}/weather?q=${city}&appid=${this.apiKey}`;
-    return this.http.get(url);
+  getWeatherFromApi(city: string) {
+    return this.http.get(
+      `http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`
+    );
   }
 
-  getWeatherByCoordinates(lat: number, lon: number): Observable<any> {
-    const url = `${this.apiUrl}/weather?lat=${lat}&lon=${lon}&appid=${this.apiKey}`;
-    return this.http.get(url);
+  public weather_form = new UntypedFormGroup({
+    city: new FormControl("", Validators.required),
+  });
+  public weather: Object;
+  public city: string;
+
+  search(formData: FormData) {
+    console.log("formData: ", formData);
+    this.storage.set("city", formData["city"]);
+
+    this.weatherService
+      .getWeatherFromApi(formData["city"])
+      .subscribe((weather) => {
+        this.weather = weather;
+        console.log(weather);
+      });
   }
+
+
+  getWeather() {
+    this.storage
+      .get("city")
+      .then((city) => {
+        if (city === null) {
+          this.weatherService
+            .getWeatherFromApi("cancun")
+            .subscribe((weather) => {
+              this.weather = weather;
+              console.log("clima de cancun", weather);
+            });
+        } else {
+          this.weatherService.getWeatherFromApi(city).subscribe((weather) => {
+            this.weather = weather;
+            console.log(weather);
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+
 }
